@@ -1,0 +1,28 @@
+<%= render "titleBar" %>
+<p id="notice"><%= notice %></p>
+
+<h1>Films</h1>
+
+<br>
+<%= link_to 'New Film', new_film_path, class: 'button round' %>
+<br>
+
+<table>
+  <thead>
+    <tr>
+      <th>Description</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @films.each do |film| %>
+      <tr>
+        <td><%= film.description %></td>
+        <td><%= link_to 'Show', film, class: 'button round' %></td>
+        <td><%= link_to 'Edit', edit_film_path(film), class: 'button round' %></td>
+        <td><%= link_to 'Destroy', film, method: :delete, data: { confirm: 'Are you sure?' }, class: 'button round' %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

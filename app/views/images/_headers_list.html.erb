@@ -1,0 +1,20 @@
+<%= form_tag map_fields_images_path, multipart: true, authenticity_token: true do %>
+    <table>
+      <thead>
+      <tr>
+        <th>Column Name</th>
+        <th>Field Name</th>
+      </tr>
+      </thead>
+      <tbody>
+      <% headers_map.each_pair do |column, field| %>
+          <tr>
+            <td><%= column %></td>
+            <td><%= collection_select(column, nil, image_attributes, :to_s, :to_s, {:selected => field}) %>
+            </td>
+          </tr>
+      <% end %>
+      </tbody>
+    </table>
+    <%= submit_tag "Map Data Fields", class: "button round" %>
+<% end %>

@@ -1,0 +1,9 @@
+$('#uploadImages').foundation('close');
+<% if @sheets.length == 1 %>
+  $("#mapTable").html("<%= escape_javascript(render partial: 'headers_list',
+                           locals: { image_attributes: ['', *Image.external_attribute_names], headers_map: @image_factory.headers_map } ) %>");
+  $('#mapUploadImagesFields').foundation('open');
+<% else %>
+  $("#selectSheetList").html("<%= escape_javascript(render partial: 'sheets_list', locals: { sheets: @sheets } ) %>");
+  $('#selectSheet').foundation('open');
+<% end %>

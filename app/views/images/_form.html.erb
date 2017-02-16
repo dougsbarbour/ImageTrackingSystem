@@ -1,0 +1,128 @@
+<%= form_for(image, :html => {:multipart => true}) do |f| %>
+    <% if image.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(image.errors.count, "error") %> prohibited this image from being saved:</h2>
+
+          <ul>
+            <% image.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+
+    <div class="row">
+      <div class="small-4 columns">
+        <div class="field">
+          <%= f.label :category %>
+          <%= f.collection_select(:category_id, Category.all, :id, :description, {:prompt => 'Select a Category', :selected => @image.category_id}, {}) %>
+        </div>
+      </div>
+
+      <div class="small-4 columns end">
+        <div class="field">
+          <%= f.label 'ID Suffix' %>
+          <%= f.text_field :idSuffix %>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="small-12 columns">
+        <div class="field">
+          <%= f.label :description %>
+          <%= f.text_field :description %>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="small-6 columns">
+        <div class="field">
+          <%= f.label :location %>
+          <%= f.text_field :location %>
+        </div>
+      </div>
+
+      <div class="small-6 columns">
+        <div class="field">
+          <%= f.label :description2 %>
+          <%= f.text_field :description2 %>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="small-3 columns">
+        <div class="field">
+          <%= f.label :dateTaken %>
+          <%= f.text_field(:dateTaken, class: 'span2', id: 'dp1') %>
+        </div>
+      </div>
+
+      <div class="small-3 columns">
+        <div class="field">
+          <%= f.label :orientation %>
+          <%= f.select(:orientation, @image_factory.orientation_encoding_map(@image)) %>
+        </div>
+      </div>
+      <div class="small-3 columns">
+        <div class="field">
+          <%= f.label :lens %>
+          <%= f.collection_select(:lens_id, Lens.all, :id, :description, {:prompt => 'Select a Lens', :selected => @image.lens_id}, {}) %>
+        </div>
+      </div>
+
+      <div class="small-3 columns">
+        <div class="field">
+          <%= f.label :film %>
+          <%= f.collection_select(:film_id, Film.all, :id, :description, {:prompt => 'Select a film', :selected => @image.film_id}, {}) %>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="small-6 columns">
+        <div class="field">
+          <%= f.label :keywords %>
+          <%= f.text_field :keywords %>
+        </div>
+      </div>
+
+      <div class="small-6 columns">
+        <div class="field">
+          <%= f.label :notes %>
+          <%= f.text_field :notes %>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="small-12 columns">
+        <%= f.label :thumbnail, class: "button round" %>
+        <%= f.file_field :thumbnail, class: "show-for-sr" %>
+        <%= link_to @image.thumbnail.url(:original) do %>
+            <%= image_tag @image.thumbnail.url(:thumb) %>
+        <% end %>
+        <% if @image.persisted? %>
+            <%= link_to 'Remove thunbnail', remove_image_thumbnail_path, class: "button round" %>
+        <% end %>
+
+      </div>
+    </div>
+
+
+    <div class="actions">
+      <%= f.submit class: "button round" %>
+    </div>
+<% end %>
+
+<script>
+  $(function () {
+    $('#dp1').fdatepicker({
+      initialDate: '02-12-1989',
+      format: 'mm-dd-yyyy',
+      disableDblClickSelection: true
+    });
+  });
+</script>

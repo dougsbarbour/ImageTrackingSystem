@@ -1,0 +1,118 @@
+<%= render "titleBar" %>
+<p id="notice"><%= notice %></p>
+
+<div class="row">
+  <div class="small-6 columns">
+    <div class="field">
+      <strong>Category:</strong>
+      <%= @image.category %>
+    </div>
+  </div>
+
+  <div class="small-3 columns">
+    <div class="field">
+      <strong>Id:</strong>
+      <%= @image.id %>
+    </div>
+  </div>
+
+  <div class="small-3 columns">
+    <div class="field">
+      <strong>Id Suffix:</strong>
+      <%= @image.idSuffix %>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="small-12 columns">
+    <div class="field">
+      <strong>Description:</strong>
+      <%= @image.description %>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="small-6 columns">
+    <div class="field">
+      <strong>Location:</strong>
+      <%= @image.location %>
+    </div>
+  </div>
+
+  <div class="small-6 columns">
+    <div class="field">
+      <strong>Description 2:</strong>
+      <%= @image.description2 %>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="small-3 columns">
+    <div class="field">
+      <strong>Date Taken:</strong>
+      <%= @image.dateTaken %>
+    </div>
+  </div>
+
+  <div class="small-3 columns">
+    <div class="field">
+      <strong>Orientation:</strong>
+      <%= @image_factory.decode_orientation(@image) %>
+    </div>
+  </div>
+  <div class="small-3 columns">
+    <div class="field">
+      <strong>Lens:</strong>
+      <%= @image.lens %>
+    </div>
+  </div>
+
+  <div class="small-3 columns">
+    <div class="field">
+      <strong>Film:</strong>
+      <%= @image.film %>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="small-6 columns">
+    <div class="field">
+      <strong>Keywords:</strong>
+      <%= @image.keywords %>
+    </div>
+  </div>
+
+  <div class="small-6 columns">
+    <div class="field">
+      <strong>Notes:</strong>
+      <%= @image.notes %>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="small-12 columns">
+    <div class="field">
+      <strong>Thumbnail:</strong>
+      <%= link_to @image.thumbnail.url(:original) do %>
+          <%= image_tag @image.thumbnail.url(:thumb) %>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="small-12 columns">
+    <div class="field">
+      <strong>Date Entered:</strong>
+      <%= @image.created_at.localtime.strftime("%m/%d/%Y %I:%M %p") + " #{@image.created_at.localtime.zone.acronym}" %>
+    </div>
+  </div>
+</div>
+
+<%= link_to 'Edit', edit_image_path(@image), class: 'button round' %>
+<%= link_to 'Back', images_path, class: 'button round' %>

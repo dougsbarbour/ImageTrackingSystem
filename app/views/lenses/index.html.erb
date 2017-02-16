@@ -1,0 +1,28 @@
+<%= render "titleBar" %>
+<p id="notice"><%= notice %></p>
+
+<h1>Lenses</h1>
+
+<%= link_to 'New Lens', new_lens_path, class: 'button round' %>
+
+<br>
+
+<table>
+  <thead>
+    <tr>
+      <th>Description</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @lenses.each do |lens| %>
+      <tr>
+        <td><%= lens.description %></td>
+        <td><%= link_to 'Show', lens, class: 'button round' %></td>
+        <td><%= link_to 'Edit', edit_lens_path(lens), class: 'button round' %></td>
+        <td><%= link_to 'Destroy', lens, method: :delete, data: { confirm: 'Are you sure?' }, class: 'button round' %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

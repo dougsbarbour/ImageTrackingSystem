@@ -1,0 +1,23 @@
+<div class="title-bar" data-responsive-toggle="top-menu" data-hide-for="medium">
+  <button class="menu-icon" type="button" data-toggle></button>
+  <div class="title-bar-title">Menu</div>
+</div>
+
+<div class="top-bar" id="top-menu">
+  <div class="top-bar-left">
+    <ul class="dropdown menu" data-dropdown-menu>
+      <li class="menu-text">Image Tracking System</li>
+      <li><%= link_to 'Images', images_path %></li>
+      <li><%= link_to 'Categories', categories_path %></li>
+      <li><%= link_to 'Lenses', lenses_path %></li>
+      <li><%= link_to 'Films', films_path %></li>
+    </ul>
+  </div>
+  <div class="top-bar-right">
+    <ul class="menu">
+      <li><input type="search" placeholder="Search"></li>
+      <li><button type="button" class="button round">Search</button></li>
+      <li><%= link_to 'Log In', log_in_path %></li>
+    </ul>
+  </div>
+</div>

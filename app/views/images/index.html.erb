@@ -1,0 +1,106 @@
+<%= render "titleBar" %>
+<p id="notice"><%= notice %></p>
+
+<h1>Images</h1>
+<div class="row">
+  <div class="small-8 column">
+    <%= link_to 'New Image', new_image_path, class: 'button round float-left' %>
+    <%= button_tag "Upload Images", class: "button round", data: {open: 'uploadImages'} %>
+  </div>
+  <div class="small-3 columns">
+    <div class="button-group float-right">
+      <%= link_to 'Edit Films', films_path, class: 'button round' %>
+      <%= link_to 'Edit Lenses', lenses_path, class: 'button round' %>
+    </div>
+  </div>
+</div>
+<div class="reveal" id="uploadImages" data-reveal>
+  <h1>Select a file to upload (.xls, .csv)</h1>
+  <%= form_tag upload_images_path, multipart: true, authenticity_token: true, remote: true do %>
+      <%= file_field_tag :upload_images_file %>
+      <%= check_box_tag(:headers_in_first_row) %>
+      <%= label_tag(:headers_in_first_row, "First row has headings") %>
+      <br>
+      <%= submit_tag "Upload", class: "button round" %>
+  <% end %>
+  <button class="close-button" data-close aria-label="Close modal" type="button">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="reveal" id="selectSheet" data-reveal>
+  <h1>Select a sheet to import</h1>
+  <%= form_tag select_sheet_images_path, multipart: true, authenticity_token: true, remote: true do %>
+      <div id="selectSheetList">
+        <%= render partial: 'sheets_list', locals: {sheets: []} %>
+      </div>
+      <br>
+      <%= submit_tag "Next", class: "button round" %>
+  <% end %>
+  <button class="close-button" data-close aria-label="Close modal" type="button">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="reveal" id="mapUploadImagesFields" data-reveal>
+  <h1>Map columns to data fields</h1>
+  <div class="table-scroll" id="mapTable">
+    <%= render partial: 'headers_list', locals: {image_attributes: ['', *Image.external_attribute_names], headers_map: @image_factory.headers_map} %>
+  </div>
+  <button class="close-button" data-close aria-label="Close modal" type="button">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="table-scroll">
+  <table>
+    <thead>
+    <tr>
+      <th>Id</th>
+      <th>Id Suffix</th>
+      <th>Category</th>
+      <th>Description</th>
+      <th>Location</th>
+      <th>Description 2</th>
+      <th>Date Taken</th>
+      <th>Date Entered</th>
+      <th>Orientation</th>
+      <th>Keywords</th>
+      <th>Notes</th>
+      <th>Lens</th>
+      <th>Film</th>
+      <th>Thumb</th>
+      <th></th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <% @images.each do |image| %>
+        <tr>
+          <td><%= image.id %></td>
+          <td><%= image.idSuffix %></td>
+          <td><%= image.category %></td>
+          <td><%= image.description %></td>
+          <td><%= image.location %></td>
+          <td><%= image.description2 %></td>
+          <td><%= image.dateTaken %></td>
+          <td><%= image.created_at.localtime.strftime("%m/%d/%Y %I:%M %p") + " #{image.created_at.localtime.zone.acronym}" %></td>
+          <td><%= @image_factory.decode_orientation(image) %></td>
+          <td><%= image.keywords %></td>
+          <td><%= image.notes %></td>
+          <td><%= image.lens %></td>
+          <td><%= image.film %></td>
+          <td>
+            <%= link_to image.thumbnail.url(:original) do %>
+                <%= image_tag image.thumbnail.url(:thumb) %>
+            <% end %>
+          </td>
+          <td>
+            <div class="button-group">
+              <%= link_to 'Show', image, class: 'button round' %>
+              <%= link_to 'Edit', edit_image_path(image), class: 'button round' %>
+              <%= link_to 'Destroy', image, method: :delete, data: {confirm: 'Are you sure?'}, class: 'button round' %>
+            </div>
+          </td>
+        </tr>
+    <% end %>
+    </tbody>
+  </table>
+</div>

@@ -1,0 +1,10 @@
+<%= render "titleBar" %>
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @lens.description %>
+</p>
+
+<%= link_to 'Edit', edit_lens_path(@lens), class: 'button round' %>
+<%= link_to 'Back', lenses_path, class: 'button round' %>
