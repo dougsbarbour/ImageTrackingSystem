@@ -1,31 +1,29 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  category: MyString
-  id: 
+  category: one
   idSuffix: MyString
   description: MyString
   location: MyString
   description2: MyString
   dateTaken: 
   dateEntered: 
-  orientation: 
+  orientation: 'L'
   keywords: MyString
   notes: MyString
-  lens: 
-  film: 
+  lens: one
+  film: one
 
 two:
-  category: MyString
-  id: 
+  category: two
   idSuffix: MyString
   description: MyString
   location: MyString
   description2: MyString
   dateTaken: 
   dateEntered: 
-  orientation: 
+  orientation: 'P'
   keywords: MyString
   notes: MyString
-  lens: 
-  film: 
+  lens: two
+  film: two

@@ -56,7 +56,7 @@ class LensesController < ApplicationController
   def destroy
     @lens.destroy
     respond_to do |format|
-      format.html { redirect_to lens_index_url, notice: 'Lens was successfully destroyed.' }
+      format.html { redirect_to lenses_url, notice: 'Lens was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

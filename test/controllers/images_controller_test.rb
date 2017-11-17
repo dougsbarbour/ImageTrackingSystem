@@ -17,7 +17,7 @@ class ImagesControllerTest < ActionDispatch::IntegrationTest
 
   test "should create image" do
     assert_difference('Image.count') do
-      post images_url, params: { image: { category: @image.category, dateEntered: @image.dateEntered, dateTaken: @image.dateTaken, description2: @image.description2, description: @image.description, film: @image.film, id: @image.id, idSuffix: @image.idSuffix, keywords: @image.keywords, lens: @image.lens, location: @image.location, notes: @image.notes, orientation: @image.orientation } }
+      post images_url, params: { image: { category_id: @image.category.id, dateEntered: @image.dateEntered, dateTaken: @image.dateTaken, description2: @image.description2, description: @image.description, film_id: @image.film.id, idSuffix: @image.idSuffix, keywords: @image.keywords, lens_id: @image.lens.id, location: @image.location, notes: @image.notes, orientation: @image.orientation } }
     end
 
     assert_redirected_to image_url(Image.last)

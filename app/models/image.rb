@@ -17,4 +17,5 @@ class Image < ApplicationRecord
     super(*args)
     self.dateTaken=(Date.today) if self.dateTaken.nil?
   end
+
 end

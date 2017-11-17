@@ -9,7 +9,7 @@ class ImagesController
 
     def new_image(*args)
       image = Image.new(*args)
-      image.film=(Film.digital) if image.film.nil?
+      image.film = Film.digital unless image.film
       return image
     end
 

@@ -8,3 +8,7 @@ class ActiveSupport::TestCase
 
   # Add more helper methods to be used by all tests here...
 end
+
+def sample_file(filename = "sample_file.jpg")
+  File.new("test/fixtures/files/#{filename}")
+end
